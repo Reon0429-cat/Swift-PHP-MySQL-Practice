@@ -19,7 +19,7 @@ final class ViewController: UIViewController {
     }
     
     @IBAction private func sendButtonDidTapped(_ sender: Any) {
-        guard let url = URL(string: "http://localhost/") else { return }
+        guard let url = URL(string: "http://localhost/WebService/saveUser.php") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         guard let text = textField.text else { return }
