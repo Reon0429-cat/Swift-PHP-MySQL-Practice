@@ -26,6 +26,9 @@
                                 <state key="normal" title="送信">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendButtonDidTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C9w-d2-qrD"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Giz-vL-rRl">
                                 <rect key="frame" x="50" y="144" width="314" height="34"/>
@@ -44,6 +47,9 @@
                             <constraint firstItem="iso-SU-6MQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z1h-qI-VDS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="Giz-vL-rRl" id="i8S-XX-4qn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
