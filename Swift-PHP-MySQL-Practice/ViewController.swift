@@ -27,15 +27,15 @@ final class ViewController: UIViewController {
         request.httpBody = postParameters.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("DEBUG_PRINT: ", error.localizedDescription)
+                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
                 return
             }
             guard let data = data else { return }
             do {
                 let user = try JSONDecoder().decode(User.self, from: data)
-                print("DEBUG_PRINT: ", user.text)
+                print("DEBUG_PRINT\(#line) :", user.text)
             } catch {
-                print("DEBUG_PRINT: ", error.localizedDescription)
+                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
             }
         }
         task.resume()
