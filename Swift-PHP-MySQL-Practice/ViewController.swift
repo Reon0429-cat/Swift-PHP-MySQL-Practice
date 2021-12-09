@@ -32,8 +32,8 @@ final class ViewController: UIViewController {
             }
             guard let data = data else { return }
             do {
-                let user = try JSONDecoder().decode(User.self, from: data)
-                print("DEBUG_PRINT\(#line) :", user.text)
+                let result = try JSONDecoder().decode(Result.self, from: data)
+                print("DEBUG_PRINT\(#line) :", result.message)
             } catch {
                 print("DEBUG_PRINT\(#line) :", error.localizedDescription)
             }
@@ -43,8 +43,8 @@ final class ViewController: UIViewController {
     
 }
 
-struct User: Decodable {
+struct Result: Decodable {
     
-    let text: String
+    let message: String
     
 }
