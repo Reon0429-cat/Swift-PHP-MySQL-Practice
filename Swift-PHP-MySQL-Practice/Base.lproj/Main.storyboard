@@ -17,13 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-SU-6MQ">
-                                <rect key="frame" x="50" y="378" width="314" height="60"/>
+                                <rect key="frame" x="50" y="118" width="314" height="60"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="XZF-Jn-qj8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="39"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="40"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="送信">
+                                <state key="normal" title="保存">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
@@ -31,23 +32,58 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Giz-vL-rRl">
-                                <rect key="frame" x="50" y="144" width="314" height="34"/>
+                                <rect key="frame" x="50" y="64" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psU-Sk-tLG">
+                                <rect key="frame" x="50" y="198" width="314" height="60"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="40"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="反映">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="reflectButtonDidTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uai-tq-oca"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dUn-EP-qiS">
+                                <rect key="frame" x="0.0" y="278" width="414" height="584"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="KUc-De-aGX">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KUc-De-aGX" id="Gju-wg-AQz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                         <constraints>
-                            <constraint firstItem="iso-SU-6MQ" firstAttribute="top" secondItem="Giz-vL-rRl" secondAttribute="bottom" constant="200" id="L1h-Cp-9Jr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dUn-EP-qiS" secondAttribute="trailing" id="72e-Ig-RYR"/>
+                            <constraint firstItem="psU-Sk-tLG" firstAttribute="height" secondItem="iso-SU-6MQ" secondAttribute="height" id="AVz-zo-otZ"/>
+                            <constraint firstItem="dUn-EP-qiS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Anx-9U-ShB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dUn-EP-qiS" secondAttribute="bottom" id="EOs-zU-wE3"/>
+                            <constraint firstItem="iso-SU-6MQ" firstAttribute="top" secondItem="Giz-vL-rRl" secondAttribute="bottom" constant="20" id="L1h-Cp-9Jr"/>
+                            <constraint firstItem="psU-Sk-tLG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qu8-Fu-Hyh"/>
+                            <constraint firstItem="dUn-EP-qiS" firstAttribute="top" secondItem="psU-Sk-tLG" secondAttribute="bottom" constant="20" id="TT0-tB-7F6"/>
                             <constraint firstItem="iso-SU-6MQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Yrf-9V-ABu"/>
-                            <constraint firstItem="Giz-vL-rRl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="ibY-7d-7b9"/>
+                            <constraint firstItem="Giz-vL-rRl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="ibY-7d-7b9"/>
+                            <constraint firstItem="psU-Sk-tLG" firstAttribute="top" secondItem="iso-SU-6MQ" secondAttribute="bottom" constant="20" id="qdX-hg-pbt"/>
                             <constraint firstItem="Giz-vL-rRl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="srt-vS-ouI"/>
                             <constraint firstItem="Giz-vL-rRl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="uL3-YJ-haE"/>
                             <constraint firstItem="iso-SU-6MQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z1h-qI-VDS"/>
+                            <constraint firstItem="psU-Sk-tLG" firstAttribute="width" secondItem="iso-SU-6MQ" secondAttribute="width" id="zgF-5Z-JHg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="dUn-EP-qiS" id="moU-1X-JQv"/>
                         <outlet property="textField" destination="Giz-vL-rRl" id="i8S-XX-4qn"/>
                     </connections>
                 </viewController>
@@ -59,6 +95,15 @@
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
