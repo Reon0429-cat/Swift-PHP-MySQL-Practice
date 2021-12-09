@@ -7,20 +7,58 @@
 
 import UIKit
 
-struct Result: Decodable {
-    
-    let message: String
-    
-}
-
 struct Item: Decodable {
     
     let text: String
     
 }
 
-final class ViewController: UIViewController {
+typealias ResultHandler<T> = (Result<T, Error>) -> Void
 
+final class APIClient {
+    
+    func fetchAllItems(text: String, completion: @escaping ResultHandler<[Item]>) {
+        guard let url = URL(string: "http://localhost:8888/WebService/fetchAllItems.php") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postParameters = "text=\(text)"
+        request.httpBody = postParameters.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let items = try JSONDecoder().decode([Item].self, from: data)
+                completion(.success(items))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+    
+    func saveItem(text: String, completion: @escaping ResultHandler<Any?>) {
+        guard let url = URL(string: "http://localhost:8888/WebService/saveItem.php") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postParameters = "text=\(text)"
+        request.httpBody = postParameters.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            completion(.success(nil))
+        }
+        task.resume()
+    }
+    
+}
+
+final class ViewController: UIViewController {
+    
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var tableView: UITableView!
     
@@ -32,80 +70,40 @@ final class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        guard let url = URL(string: "http://localhost:8888/WebService/fetchAllItems.php") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        guard let text = textField.text else { return }
-        let postParameters = "text=\(text)"
-        request.httpBody = postParameters.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
-                return
-            }
-            guard let data = data else { return }
-            do {
-                let items = try JSONDecoder().decode([Item].self, from: data)
-                self.items = items.map { $0.text }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
-            }
-        }
-        task.resume()
+        fetchAllItems(text: "")
         
     }
     
     @IBAction private func sendButtonDidTapped(_ sender: Any) {
-        guard let url = URL(string: "http://localhost:8888/WebService/saveItem.php") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
         guard let text = textField.text else { return }
-        let postParameters = "text=\(text)"
-        request.httpBody = postParameters.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
-                return
-            }
-            guard let data = data else { return }
-            do {
-                let result = try JSONDecoder().decode(Result.self, from: data)
-                print("DEBUG_PRINT\(#line) :", result.message)
-            } catch {
-                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
+        APIClient().saveItem(text: text) { result in
+            switch result {
+            case .failure(let error):
+                print("DEBUG_PRINT: ", error.localizedDescription)
+            case .success:
+                print("DEBUG_PRINT: ", "保存成功")
             }
         }
-        task.resume()
         textField.text = ""
     }
     
     @IBAction private func reflectButtonDidTapped(_ sender: Any) {
-        guard let url = URL(string: "http://localhost:8888/WebService/fetchAllItems.php") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
         guard let text = textField.text else { return }
-        let postParameters = "text=\(text)"
-        request.httpBody = postParameters.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
-                return
-            }
-            guard let data = data else { return }
-            do {
-                let items = try JSONDecoder().decode([Item].self, from: data)
+        fetchAllItems(text: text)
+    }
+    
+    private func fetchAllItems(text: String) {
+        APIClient().fetchAllItems(text: text) { result in
+            switch result {
+            case .failure(let error):
+                print("DEBUG_PRINT: ", error.localizedDescription)
+            case .success(let items):
                 self.items = items.map { $0.text }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            } catch {
-                print("DEBUG_PRINT\(#line) :", error.localizedDescription)
             }
         }
-        task.resume()
     }
     
 }
