@@ -16,6 +16,8 @@
 		AB6D54EA275F3E16004C3061 /* Swift_PHP_MySQL_PracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D54E9275F3E16004C3061 /* Swift_PHP_MySQL_PracticeTests.swift */; };
 		AB6D54F4275F3E16004C3061 /* Swift_PHP_MySQL_PracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D54F3275F3E16004C3061 /* Swift_PHP_MySQL_PracticeUITests.swift */; };
 		AB6D54F6275F3E16004C3061 /* Swift_PHP_MySQL_PracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D54F5275F3E16004C3061 /* Swift_PHP_MySQL_PracticeUITestsLaunchTests.swift */; };
+		AB6D5506276361A3004C3061 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D5505276361A3004C3061 /* APIClient.swift */; };
+		AB6D550827636213004C3061 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D550727636213004C3061 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		AB6D54EF275F3E16004C3061 /* Swift-PHP-MySQL-PracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-PHP-MySQL-PracticeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D54F3275F3E16004C3061 /* Swift_PHP_MySQL_PracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_PHP_MySQL_PracticeUITests.swift; sourceTree = "<group>"; };
 		AB6D54F5275F3E16004C3061 /* Swift_PHP_MySQL_PracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_PHP_MySQL_PracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB6D5505276361A3004C3061 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		AB6D550727636213004C3061 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			children = (
 				AB6D54D2275F3E13004C3061 /* AppDelegate.swift */,
 				AB6D54D4275F3E13004C3061 /* SceneDelegate.swift */,
+				AB6D550727636213004C3061 /* Item.swift */,
+				AB6D5505276361A3004C3061 /* APIClient.swift */,
 				AB6D54D6275F3E13004C3061 /* ViewController.swift */,
 				AB6D54D8275F3E13004C3061 /* Main.storyboard */,
 				AB6D54DB275F3E15004C3061 /* Assets.xcassets */,
@@ -258,9 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6D550827636213004C3061 /* Item.swift in Sources */,
 				AB6D54D7275F3E13004C3061 /* ViewController.swift in Sources */,
 				AB6D54D3275F3E13004C3061 /* AppDelegate.swift in Sources */,
 				AB6D54D5275F3E13004C3061 /* SceneDelegate.swift in Sources */,
+				AB6D5506276361A3004C3061 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
